@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import Utils.Commons;
+import utils.Commons;
 import pojos.FieldType;
 import pojos.Record;
 
 public class Main {
     public static final String COMMA_STR = ",";
+    public static final String OUTPUT_PATH = "C:\\Users\\agams\\OneDrive\\Desktop\\coda-assignment\\output";
 
     private static List<List<Record>> processData(String[] headers, List<String[]> userDataList) {
         List<List<Record>> employeeRecords = new ArrayList<>();
@@ -37,9 +38,9 @@ public class Main {
     }
 
     private static void convertToJsonAndSave(List<List<Record>> employeeRecords) {
-        for(int i=0; i<employeeRecords.size(); i++){
+        for(int i = 0; i < employeeRecords.size(); i++){
             try {
-                FileWriter writer = new FileWriter(new File("C:\\Users\\agams\\OneDrive\\Desktop\\coda-assignment\\output", "user"+ (i+1) +".json"));
+                FileWriter writer = new FileWriter(new File(OUTPUT_PATH, "user"+ (i+1) +".json"));
                 writer.write(Commons.toJson(employeeRecords.get(i)));
                 writer.close();
                 System.out.println("Successfully wrote record " + (i+1) + " to the file.");
@@ -56,7 +57,6 @@ public class Main {
         Scanner fileScanner;
 
         String filePath = sc.nextLine();
-
         File file = new File(filePath);
 
         try {
